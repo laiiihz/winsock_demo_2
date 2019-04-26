@@ -55,6 +55,10 @@ BOOL CtalkingServerDlg::OnInitDialog()
 	UpdateData(FALSE);
 	m_sListenSocket.SetParent(this);
 	m_sConnectSocket.SetParent(this);
+	GetDlgItem(IDC_BUTTON_CLOSE)->EnableWindow(FALSE);
+	GetDlgItem(IDC_STATIC_MSG)->EnableWindow(FALSE);
+	GetDlgItem(IDC_EDIT_MSG)->EnableWindow(FALSE);
+	GetDlgItem(IDOK)->EnableWindow(FALSE);
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -104,6 +108,11 @@ void CtalkingServerDlg::OnButtonListen()
 	GetDlgItem(IDC_EDIT_SERVPORT)->EnableWindow(FALSE);
 	GetDlgItem(IDC_STATIC_SERVNAME)->EnableWindow(FALSE);
 	GetDlgItem(IDC_STATIC_SERVPORT)->EnableWindow(FALSE);
+	
+	GetDlgItem(IDC_STATIC_MSG)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT_MSG)->EnableWindow(TRUE);
+	GetDlgItem(IDOK)->EnableWindow(TRUE);
+	GetDlgItem(IDC_BUTTON_CLOSE)->EnableWindow(TRUE);
 	m_sListenSocket.Create(m_nServPort);
 	m_sListenSocket.Listen();
 }
